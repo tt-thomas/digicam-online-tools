@@ -82,6 +82,12 @@ class nsb_mon():
             height=20,
         )
 
+        self.selected_div = Div(
+            text="{} channels selected".format(len(self.sel_inds)),
+            width=1000,
+            height=20,
+        )
+        
         # self.warn_div = Div(
         #     text='<p style="color:orange"> Warning : checking this box during observation is NOT safe </p>',
         #     width=100,
@@ -184,6 +190,7 @@ class nsb_mon():
                                ],
                                [self.checkbox_last_file],
                                self.err_div,
+                               [self.selected_div],
                                [self.h_means, 
                                 self.h_stds,
                                 self.scaterfig],
@@ -249,7 +256,7 @@ class nsb_mon():
             self.cam_mean_display.datasource.selected.indices = []
             self.cam_std_display.datasource.selected.indices  = []
         self.sel_inds = inds
-        print("---->",len(inds))
+        self.selected_div.text="{} channels selected".format(len(self.sel_inds))
     
     
     def last_file_warning(self,attr, old, new):
